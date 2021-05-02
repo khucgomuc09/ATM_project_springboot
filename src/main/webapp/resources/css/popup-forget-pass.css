@@ -1,0 +1,38 @@
+.btn-submit{
+    display: flex;
+    justify-content: center;
+}
+.modal-title{
+    text-align: center;
+}
+#forget-pass ul li > div{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#forget-pass ul li input{
+    padding: 3px 10px;
+    font-size: 15px;
+    font-family: "Montserrat Alternates", sans-serif;
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    width: 60%;
+
+}
+input[type=text]:focus, textarea:focus {
+    box-shadow: 0 0 3px rgb(36, 214, 200);
+    border: 1px solid rgba(36, 214, 200, 1)!important;
+}
+.update-btn{
+    border: none;
+    padding: 3px 10px;
+    border-radius: 20px;
+    color: white;
+    font-size: 15px;
+    background: #004545;
+    font-weight: 600;
+}
+.update-btn:hover{
+    background: #009c9c;
+}
