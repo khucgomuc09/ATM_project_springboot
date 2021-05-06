@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -37,8 +38,7 @@
 				<div class="header-logo space-between">
 					<div class="header-main-logo d-flex space-between">
 						<a href="/" data-aos="fade-right" data-aos-once="true"
-							class="logo"> <img
-							src="../../../resources/img/common/logo-atm.png" height="87"
+							class="logo"> <img src="../img/common/logo-atm.png" height="87"
 							width="128" alt="atm" />
 						</a>
 						<form id="serach-form" action="#" method="post">
@@ -66,24 +66,42 @@
 						<ul class="icon-profile">
 							<li id="hello-user">
 								<div class="flex-user">
-									<span>Xin chào</span> <a href="#"><span class="user-text">username</span>
+									<jstl:choose>
+										<jstl:when test="${user!=null }">
+											<span>Xin chào</span>
+											<a href="#"><span class="user-text">${user.fullname }</span>
+											</a>
+											<a href="logout"><span class="exit">Thoát</span></a>
+										</jstl:when>
+										<jstl:otherwise>
+											<a href="#"><span  class="user-text">username</span> </a>
+										</jstl:otherwise>
+									</jstl:choose>
+								</div>
 
-									</a>
-								</div> <a href="#"><span class="exit">Thoát</span></a>
 							</li>
-							<li id="user"><a style="margin-right: 10px" href="/admin"><i
-									class="fa fa-cog fa-spin ic-level"></i></a> <span
-								class="span-level">Admin</span></li>
-							<li id="user"><i class="fa fa-user-circle-o" id="user-icon"></i>
-								<ul class="sub-user">
-									<li class="login"><a href="#">Đăng nhập</a><span>/</span><a
-										href="#">Đăng ký</a></li>
-									<li><span>hoặc</span></li>
-									<li class="login-with-fb"><a href="#">Đăng nhập bằng</a> <i
-										class="fa fa-facebook" aria-hidden="true"></i></li>
-									<li class="login-with-gg"><a href="#">Đăng nhập bằng</a> <i
-										class="fa fa-google" aria-hidden="true"></i></li>
-								</ul></li>
+							<jstl:choose>
+								<jstl:when test="${user!=null&&user.level==1 }">
+									<li id="user"><a style="margin-right: 10px" href="admin"><i
+											class="fa fa-cog fa-spin ic-level"></i></a> <span
+										class="span-level">Admin</span></li>
+								</jstl:when>
+								<jstl:when test="${user==null}">
+
+									<li id="user"><i class="fa fa-user-circle-o"
+										id="user-icon"></i>
+										<ul class="sub-user">
+											<li class="login"><a href="login">Đăng nhập</a><span>/</span><a
+												href="register">Đăng ký</a></li>
+											<li><span>hoặc</span></li>
+											<li class="login-with-fb"><a href="#">Đăng nhập bằng</a>
+												<i class="fa fa-facebook" aria-hidden="true"></i></li>
+											<li class="login-with-gg"><a href="#">Đăng nhập bằng</a>
+												<i class="fa fa-google" aria-hidden="true"></i></li>
+										</ul></li>
+								</jstl:when>
+							</jstl:choose>
+
 							<li style="width: 24px"></li>
 						</ul>
 					</div>
@@ -100,23 +118,17 @@
 
 
 					<li class=""><a href="#"><img
-							src="../../../resources/img/common/logo-nsx/iPhone-(Apple)42-b_16.jpg"
-							alt="i-phone"></a></li>
+							src="../img/common/logo-nsx/iPhone-(Apple)42-b_16.jpg" alt="i-phone"></a></li>
 					<li class=""><a href="#"><img
-							src="../../../resources/img/common/logo-nsx/Samsung42-b_25.jpg"
-							alt="samsung"></a></li>
+							src="../img/common/logo-nsx/Samsung42-b_25.jpg" alt="samsung"></a></li>
 					<li class=""><a href="#"><img
-							src="../../../resources/img/common/logo-nsx/Xiaomi42-b_31.png"
-							alt="xiaomi"></a></li>
+							src="../img/common/logo-nsx/Xiaomi42-b_31.png" alt="xiaomi"></a></li>
 					<li class=""><a href="#"><img
-							src="../../../resources/img/common/logo-nsx/Vivo42-b_50.jpg"
-							alt="vivo"></a></li>
+							src="../img/common/logo-nsx/Vivo42-b_50.jpg" alt="vivo"></a></li>
 					<li class=""><a href="#"><img
-							src="../../../resources/img/common/logo-nsx/OPPO42-b_57.jpg"
-							alt="oppo"></a></li>
+							src="../img/common/logo-nsx/OPPO42-b_57.jpg" alt="oppo"></a></li>
 					<li class=""><a href="#"><img
-							src="../../../resources/img/common/logo-nsx/Huawei42-b_30.jpg"
-							alt="hua"></a></li>
+							src="../img/common/logo-nsx/Huawei42-b_30.jpg" alt="hua"></a></li>
 
 				</ul>
 			</div>
@@ -125,35 +137,35 @@
 	<ul
 		style="position: sticky; top: 8px; z-index: 100; margin-top: -97px; float: right; right: 145px;">
 		<li id="cart"><a href="#"><i class="fa fa-shopping-cart"></i></a><span
-			class="amount">9</span></li>
+			class="amount">0</span></li>
 	</ul>
 
 	<script>
-		$(document).ready(function() {
-			let wrap = $('.wrap-suggestion');
-			$('#search').on('keyup', function() {
-				let input = $('#search').val();
-				if (input === "") {
-					wrap.css("display", "none").html("");
-				} else {
-					$.ajax({
-						method : 'POST',
-						url : 'search',
-						data : {
-							input : input
-						},
-						success : function(result) {
-							if (result === "empty") {
-								wrap.css("display", "none");
-							} else {
-								wrap.css("display", "block");
-								wrap.html(result);
-							}
-						}
-					})
-				}
-			});
-		})
-	</script>
+	$(document).ready(function() {
+	    let wrap = $('.wrap-suggestion');
+	    $('#search').on('keyup', function() {
+		let input = $('#search').val();
+		if (input === "") {
+		    wrap.css("display", "none").html("");
+		} else {
+		    $.ajax({
+			method : 'POST',
+			url : 'search',
+			data : {
+			    input : input
+			},
+			success : function(result) {
+			    if (result === "empty") {
+				wrap.css("display", "none");
+			    } else {
+				wrap.css("display", "block");
+				wrap.html(result);
+			    }
+			}
+		    })
+		}
+	    });
+	})
+    </script>
 </body>
 </html>

@@ -30,10 +30,11 @@
 							user exist</span>
 
 					</label> <input type="text" id="usr-name" name="username" value="">
-					<label for="password">Mật khẩu*</label> <input type="text"
-						id="password" name="password" value=""> <label
-						for="c-password">Xác nhận mật khẩu*</label> <input type="text"
-						id="c-password" name="c-password" value=""> <label
+					<label for="password">Mật khẩu*</label> <input 
+						id="password" name="password" type="password" value=""> <label
+						for="c-password">Xác nhận mật khẩu*</label> <input
+						type="password" id="c-password" name="c-password" value="">
+					<label
 						for="full-name">Họ tên*</label> <input type="text" id="full-name"
 						name="fullname" value=""> <label for="gender">Giới
 						tính</label> <select id="gender" name="gender">
