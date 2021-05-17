@@ -152,7 +152,8 @@
 
 								<div class="owl-item">
 									<div class="item">
-										<a href="/"> <img src="${hotProduct.image }" alt="" />
+										<a href="${hotProduct.supplier }/${hotProduct.id }"> <img
+											src="${hotProduct.image }" alt="" />
 											<h3 style="text-align: center">${hotProduct.name }</h3>
 											<div class="price">
 												<jstl:choose>
@@ -203,7 +204,8 @@
 
 								<div class="owl-item">
 									<div class="item">
-										<a href="/"> <img src="${saleProduct.image }" alt="" />
+										<a href="${saleProduct.supplier }/${saleProduct.id }"> <img
+											src="${saleProduct.image }" alt="" />
 											<h3 style="text-align: center">${saleProduct.name }</h3>
 											<div class="price">
 												<jstl:choose>

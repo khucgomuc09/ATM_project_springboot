@@ -49,5 +49,8 @@ public class Product {
 	@OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private ProductDetail productDetail;
+	
+	@OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
+	private CartItem cartItem;
 
 }

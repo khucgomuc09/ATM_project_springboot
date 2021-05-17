@@ -38,8 +38,8 @@
 				<div class="header-logo space-between">
 					<div class="header-main-logo d-flex space-between">
 						<a href="/" data-aos="fade-right" data-aos-once="true"
-							class="logo"> <img src="../img/common/logo-atm.png" height="87"
-							width="128" alt="atm" />
+							class="logo"> <img src="../img/common/logo-atm.png"
+							height="87" width="128" alt="atm" />
 						</a>
 						<form id="serach-form" action="#" method="post">
 							<div class="search">
@@ -56,10 +56,10 @@
 						id="header-main-center">
 						<div class="news-request d-flex">
 							<div class="news">
-								<a class="transform-para" href="/news">Tin tức</a>
+								<a class="transform-para" href="news">Tin tức</a>
 							</div>
 							<div class="request">
-								<a class="transform-para" href="/question">Hỏi đáp</a>
+								<a class="transform-para" href="question">Hỏi đáp</a>
 							</div>
 						</div>
 
@@ -71,10 +71,10 @@
 											<span>Xin chào</span>
 											<a href="#"><span class="user-text">${user.fullname }</span>
 											</a>
-											<a href="logout"><span class="exit">Thoát</span></a>
+											<a href="../logout"><span class="exit">Thoát</span></a>
 										</jstl:when>
 										<jstl:otherwise>
-											<a href="#"><span  class="user-text">username</span> </a>
+											<a href="#"><span class="user-text">username</span> </a>
 										</jstl:otherwise>
 									</jstl:choose>
 								</div>
@@ -91,8 +91,8 @@
 									<li id="user"><i class="fa fa-user-circle-o"
 										id="user-icon"></i>
 										<ul class="sub-user">
-											<li class="login"><a href="login">Đăng nhập</a><span>/</span><a
-												href="register">Đăng ký</a></li>
+											<li class="login"><a href="../login">Đăng nhập</a><span>/</span><a
+												href="../register">Đăng ký</a></li>
 											<li><span>hoặc</span></li>
 											<li class="login-with-fb"><a href="#">Đăng nhập bằng</a>
 												<i class="fa fa-facebook" aria-hidden="true"></i></li>
@@ -118,7 +118,8 @@
 
 
 					<li class=""><a href="#"><img
-							src="../img/common/logo-nsx/iPhone-(Apple)42-b_16.jpg" alt="i-phone"></a></li>
+							src="../img/common/logo-nsx/iPhone-(Apple)42-b_16.jpg"
+							alt="i-phone"></a></li>
 					<li class=""><a href="#"><img
 							src="../img/common/logo-nsx/Samsung42-b_25.jpg" alt="samsung"></a></li>
 					<li class=""><a href="#"><img
@@ -136,36 +137,43 @@
 	</div>
 	<ul
 		style="position: sticky; top: 8px; z-index: 100; margin-top: -97px; float: right; right: 145px;">
-		<li id="cart"><a href="#"><i class="fa fa-shopping-cart"></i></a><span
-			class="amount">0</span></li>
+		<li id="cart"><a href="../cart"><i
+				class="fa fa-shopping-cart"></i></a><span class="amount"> <jstl:choose>
+					<jstl:when test="${order!=null}">
+						${order.total}
+						</jstl:when>
+					<jstl:otherwise>
+						0</jstl:otherwise>
+				</jstl:choose>
+		</span></li>
 	</ul>
 
 	<script>
-	$(document).ready(function() {
-	    let wrap = $('.wrap-suggestion');
-	    $('#search').on('keyup', function() {
-		let input = $('#search').val();
-		if (input === "") {
-		    wrap.css("display", "none").html("");
-		} else {
-		    $.ajax({
-			method : 'POST',
-			url : 'search',
-			data : {
-			    input : input
-			},
-			success : function(result) {
-			    if (result === "empty") {
-				wrap.css("display", "none");
-			    } else {
-				wrap.css("display", "block");
-				wrap.html(result);
-			    }
-			}
-		    })
-		}
-	    });
-	})
-    </script>
+		$(document).ready(function() {
+			let wrap = $('.wrap-suggestion');
+			$('#search').on('keyup', function() {
+				let input = $('#search').val();
+				if (input === "") {
+					wrap.css("display", "none").html("");
+				} else {
+					$.ajax({
+						method : 'POST',
+						url : 'search',
+						data : {
+							input : input
+						},
+						success : function(result) {
+							if (result === "empty") {
+								wrap.css("display", "none");
+							} else {
+								wrap.css("display", "block");
+								wrap.html(result);
+							}
+						}
+					})
+				}
+			});
+		})
+	</script>
 </body>
 </html>
