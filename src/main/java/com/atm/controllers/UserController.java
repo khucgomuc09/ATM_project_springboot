@@ -46,7 +46,7 @@ public class UserController {
 	@GetMapping("/logout")
 	public String logout(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
-		return "redirect:/";
+		return "redirect:removeCartItemSS";
 	}
 
 	@PostMapping("/login")

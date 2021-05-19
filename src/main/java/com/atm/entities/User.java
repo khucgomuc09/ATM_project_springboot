@@ -37,7 +37,7 @@ public class User {
 	private String avatar;
 
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id")
-	private List<Order> orders;
+	@JoinColumn(name = "user_id")
+	private List<UserOrder> orders;
 
 }

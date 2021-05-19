@@ -1,7 +1,6 @@
 package com.atm.controllers;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.atm.entities.CartItem;
-import com.atm.entities.Order;
+import com.atm.entities.UserOrder;
 import com.atm.entities.Product;
 import com.atm.entities.User;
 import com.atm.sevices.CartItemService;
@@ -36,24 +36,21 @@ public class CartController {
 
 //
 	@GetMapping("/cart")
-	public ModelAndView cart(@SessionAttribute(name = "order_session", required = false) Order order,
+	public ModelAndView cart(@SessionAttribute(name = "order_session", required = false) UserOrder order,
 			@SessionAttribute(name = "user", required = false) User user) {
 
 		ModelAndView modelAndView = new ModelAndView("client/cart");
-//		if (cartItems != null)
-//			modelAndView.addObject("cartItems", cartItems);
-//		System.out.println(cartItems + " cart");
 		if (order != null) {
 
 			modelAndView.addObject("order", order);
-			System.out.println(order + " cart");
+//			order.setUser(user);
+//			System.out.println("cartController 45: " + order.getUser());
 		}
 		if (user != null) {
-			List<Order> list = new ArrayList<Order>();
+			List<UserOrder> list = new ArrayList<UserOrder>();
 			list.add(order);
 			user.setOrders(list);
 			modelAndView.addObject("user", user);
-			System.out.println(user + " user");
 		}
 
 		return modelAndView;
@@ -64,9 +61,9 @@ public class CartController {
 	// @SessionAttribute(name = "cart_item_session", required = false)
 	// List<CartItem> cartItems
 	public int addItemTocart(@RequestParam("id") int id_product, @RequestParam("orderid") int orderid,
-			ModelMap modelMap, @SessionAttribute(name = "order_session", required = false) Order order,
+			ModelMap modelMap, @SessionAttribute(name = "order_session", required = false) UserOrder order,
 			@SessionAttribute("user") User user) {
-		System.out.println("order:" + order);
+//		System.out.println("order:" + order);
 		int count = 0, t_price = 0;
 		if (order != null) {
 			if (order.getCartItems() != null) {
@@ -94,14 +91,13 @@ public class CartController {
 			}
 			order.setTotal(count);
 			order.setTotal_price(t_price);
-			System.out.println(count);
+//			System.out.println(count);
 			return order.getTotal();
 
 		} else {
 			List<CartItem> lcartItems = cartItemService.addCartItem(id_product);
 			String address = user != null ? user.getAddress() : "";
-			Order od = new Order(orderid, lcartItems, 0, 0, 0, address);// total,status,price
-//			od.setCartItem(c);
+			UserOrder od = new UserOrder(orderid, lcartItems, 0, 0, 0, address);// total,status,price
 
 			for (CartItem cartItem : lcartItems) {
 				count += cartItem.getQuantity();
@@ -109,20 +105,82 @@ public class CartController {
 			}
 			od.setTotal(count);
 			od.setTotal_price(t_price);
-			// cartItemService.addCartItem(id_product, order),
 			modelMap.addAttribute("order_session", od);
-//			List<Order> list = new ArrayList<Order>();
-//			list.add(order);
-//			user.setOrders(list);
-//			modelMap.addAttribute("cart_item_session", lcartItems);
-//			System.out.println(lcartItems + ":cartItems-order:" + od.getTotal_price());
-//			System.out.println(lcartItems + ":cartItems-order:" + lcartItems.get(0));
-//			System.out.println(modelMap.getAttribute("order_session"));
-//			count = 1;
 
 		}
-		// count product in order
 
 		return count;
 	}
+
+	@PostMapping("update_item")
+	@ResponseBody
+	public String updateCartItem(@RequestParam(name = "id", required = false) int id,
+			@RequestParam(name = "amount", required = false) int amount,
+			@SessionAttribute(name = "order_session", required = false) UserOrder order) {
+
+		int cartIndex = -1;
+		for (int i = 0; i < order.getCartItems().size(); i++) {
+			CartItem c = order.getCartItems().get(i);
+			if (c.getProduct().getId() == id) {
+				cartIndex = i;
+				c.setQuantity(amount);
+				c.setPrice(amount * c.getProduct().getPrice());
+			}
+		}
+
+		int count = 0, t_price = 0;
+		for (CartItem cartItem : order.getCartItems()) {
+			count += cartItem.getQuantity();
+			t_price += cartItem.getPrice();
+		}
+
+		order.setTotal(count);
+		order.setTotal_price(t_price);
+
+		return order.getTotal() + "-" + order.getTotal_price() + "-" + order.getCartItems().get(cartIndex).getPrice()
+				+ "-" + order.getCartItems().get(cartIndex).getProduct().getId();
+	}
+
+	@PostMapping("delete_cartItem")
+	@ResponseBody
+	public String deleteCartItem(@RequestParam(name = "id", required = false) int id,
+			@SessionAttribute(name = "order_session", required = false) UserOrder order) {
+
+//		System.out.println("id product " + id);
+		for (int i = 0; i < order.getCartItems().size(); i++) {
+			CartItem c = order.getCartItems().get(i);
+			if (c.getProduct().getId() == id) {
+//				System.out.println(order.getCartItems().get(i).getProduct().getName() + "  delete");
+				order.getCartItems().remove(i);
+			}
+		}
+//		for (CartItem c : order.getCartItems()) {
+//			System.out.println(c.getProduct().getName() + "  items");
+//		}
+		int count = 0, t_price = 0;
+		for (CartItem cartItem : order.getCartItems()) {
+			count += cartItem.getQuantity();
+			t_price += cartItem.getPrice();
+		}
+		order.setTotal(count);
+		order.setTotal_price(t_price);
+//		System.out.println("return " + count + "-" + t_price);
+		return count + "-" + t_price;
+	}
+
+	@GetMapping("/removeCartItemSS")
+	public String removeSS(SessionStatus sessionStatus) {
+		sessionStatus.setComplete();
+		return "redirect:/";
+	}
+
+	@PostMapping("payment")
+	public String payment(@SessionAttribute(name = "order_session", required = false) UserOrder order,
+			@SessionAttribute(name = "user", required = false) User user, SessionStatus sessionStatus) {
+		System.out.println("ok");
+		orderService.payment(order, user);
+		sessionStatus.setComplete();
+		return "redirect:/";
+	}
+
 }

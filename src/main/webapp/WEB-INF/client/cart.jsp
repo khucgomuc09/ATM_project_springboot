@@ -69,10 +69,10 @@
 											</div>
 											<div class="price-pro flex-direction-col">
 												<div class="flex-direction-col">
-													<span class="price"><fmt:formatNumber type="number"
-															maxFractionDigits="3"
-															value="${item.price*item.quantity }" />VND</span> <span>(Giá
-														đã bao gồm VAT)</span>
+													<span class="price" id=${ item.product.id }><fmt:formatNumber
+															type="number" maxFractionDigits="3"
+															value="${item.price }" /> VND</span> <span>(Giá đã bao
+														gồm VAT)</span>
 												</div>
 												<input type="hidden" class="msp-trash"
 													value="${item.product.id }"> <input type="hidden"
@@ -97,14 +97,15 @@
 							<!-- check gio hang empty -->
 							<h5>TỔNG CỘNG</h5>
 							<span id="total"><fmt:formatNumber type="number"
-									maxFractionDigits="3" value="${order.total_price }"/>VND</span>
+									maxFractionDigits="3" value="${order.total_price }" /> VND</span>
 						</div>
-						<!--  chech gio hang & user !null  -->
+						<!--  chech gio hang & user !null  location.href='../payment' -->
 						<jstl:choose>
 							<jstl:when
 								test="${user!=null&&order!=null&&order.cartItems!=null }">
-								<button onclick="location.href='../payment'" id="btn-submit">ĐẶT
-									HÀNG</button>
+								<form action="payment" method="post" id="form-id"></form>
+								<button onclick="document.getElementById('form-id').submit();"
+									id="btn-submit">ĐẶT HÀNG</button>
 							</jstl:when>
 							<jstl:otherwise>
 								<button data-toggle="modal" data-target="#checkout"

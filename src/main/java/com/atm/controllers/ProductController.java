@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.atm.entities.Order;
+import com.atm.entities.UserOrder;
 import com.atm.entities.User;
 import com.atm.sevices.NewsService;
 import com.atm.sevices.ProductService;
@@ -21,7 +21,7 @@ public class ProductController {
 //
 	@GetMapping("/")
 	public ModelAndView showProduct(@SessionAttribute(name = "user", required = false) User user,
-			@SessionAttribute(name = "order_session", required = false) Order order) {
+			@SessionAttribute(name = "order_session", required = false) UserOrder order) {
 //		 0:new, 1Hot, 2Sale
 		ModelAndView modelAndView = new ModelAndView("client/index");
 		modelAndView.addObject("newProducts", ps.getProductByType(0));
@@ -29,7 +29,7 @@ public class ProductController {
 		modelAndView.addObject("saleProducts", ps.getProductByType(2));
 		modelAndView.addObject("hightlight_news", ns.getHighlightNews());
 		if (order != null)
-			modelAndView.addObject(order);
+			modelAndView.addObject("order", order);
 		if (user != null) {
 			System.out.println("session");
 			modelAndView.addObject(user);

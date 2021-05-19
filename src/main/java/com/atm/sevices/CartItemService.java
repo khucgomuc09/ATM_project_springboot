@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.atm.entities.CartItem;
-import com.atm.entities.Order;
+import com.atm.entities.UserOrder;
 import com.atm.entities.Product;
 import com.atm.repositories.CartItemRepository;
 import com.atm.repositories.OrderRepository;
@@ -24,15 +24,16 @@ public class CartItemService {
 
 	public List<CartItem> addCartItem(int id) {
 		List<CartItem> listItem = new ArrayList<CartItem>();
-		int indexOfId = -1;
+		boolean isExist = false;
 		for (int i = 0; i < listItem.size(); i++) {
 			if (listItem.get(i).getProduct().getId() == id) {
-				listItem.get(indexOfId).getProduct().setAmount(listItem.get(indexOfId).getProduct().getAmount() + 1);
-				indexOfId = i;
+//				listItem.get(indexOfId).getProduct().setAmount(listItem.get(indexOfId).getProduct().getAmount() + 1);
+				listItem.get(i).setQuantity(listItem.get(i).getQuantity() + 1);
+				isExist = true;
 				break;
 			}
 		}
-		if (indexOfId == -1) {
+		if (!isExist) {
 			Product p = pr.getOne(id);
 			listItem.add(new CartItem(0, p, 1, p.getPrice()));
 		}

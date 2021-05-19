@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.atm.entities.Order;
+import com.atm.entities.UserOrder;
 import com.atm.sevices.ProductService;
 
 @Controller
@@ -17,11 +17,11 @@ public class ProductDetailController {
 
 	@GetMapping("{supplier}/{id}")
 	public ModelAndView getProductDetail(@PathVariable("id") int id,
-			@SessionAttribute(name = "order_session", required = false) Order order) {
+			@SessionAttribute(name = "order_session", required = false) UserOrder order) {
 		ModelAndView modelAndView = new ModelAndView("client/product_detail");
 		modelAndView.addObject(ps.getProductById(id));
 		if (order != null)
-			modelAndView.addObject(order);
+			modelAndView.addObject("order", order);
 		return modelAndView;
 	}
 }

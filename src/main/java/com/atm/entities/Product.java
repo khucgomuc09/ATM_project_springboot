@@ -1,9 +1,12 @@
 package com.atm.entities;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -49,8 +52,8 @@ public class Product {
 	@OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn
 	private ProductDetail productDetail;
-	
-	@OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
-	private CartItem cartItem;
+
+//	@OneToMany(mappedBy = "product", cascade = { CascadeType.REFRESH, CascadeType.PERSIST })
+//	private List<CartItem> cartItems;
 
 }

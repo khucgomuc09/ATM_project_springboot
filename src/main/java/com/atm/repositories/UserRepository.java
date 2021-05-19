@@ -12,4 +12,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query(nativeQuery = true, value = "select * from user where username =:username or email=:username and password=:password")
 	public User findByUserName(@Param("username") String username, @Param("password") String password);
 
+//	@Query(nativeQuery = true, value = "update user set username = :username where id = :id")
+//	public User updateOrderOfUser(@Param("id") int id_user, @Param("username") String username);
+
 }
