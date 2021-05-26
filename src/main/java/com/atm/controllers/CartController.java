@@ -43,14 +43,13 @@ public class CartController {
 		if (order != null) {
 
 			modelAndView.addObject("order", order);
-//			order.setUser(user);
-//			System.out.println("cartController 45: " + order.getUser());
 		}
 		if (user != null) {
 			List<UserOrder> list = new ArrayList<UserOrder>();
 			list.add(order);
 			user.setOrders(list);
 			modelAndView.addObject("user", user);
+
 		}
 
 		return modelAndView;
@@ -58,12 +57,9 @@ public class CartController {
 
 	@ResponseBody
 	@PostMapping("/add_items_to_cart")
-	// @SessionAttribute(name = "cart_item_session", required = false)
-	// List<CartItem> cartItems
 	public int addItemTocart(@RequestParam("id") int id_product, @RequestParam("orderid") int orderid,
 			ModelMap modelMap, @SessionAttribute(name = "order_session", required = false) UserOrder order,
 			@SessionAttribute("user") User user) {
-//		System.out.println("order:" + order);
 		int count = 0, t_price = 0;
 		if (order != null) {
 			if (order.getCartItems() != null) {
@@ -91,7 +87,7 @@ public class CartController {
 			}
 			order.setTotal(count);
 			order.setTotal_price(t_price);
-//			System.out.println(count);
+
 			return order.getTotal();
 
 		} else {
@@ -146,17 +142,12 @@ public class CartController {
 	public String deleteCartItem(@RequestParam(name = "id", required = false) int id,
 			@SessionAttribute(name = "order_session", required = false) UserOrder order) {
 
-//		System.out.println("id product " + id);
 		for (int i = 0; i < order.getCartItems().size(); i++) {
 			CartItem c = order.getCartItems().get(i);
 			if (c.getProduct().getId() == id) {
-//				System.out.println(order.getCartItems().get(i).getProduct().getName() + "  delete");
 				order.getCartItems().remove(i);
 			}
 		}
-//		for (CartItem c : order.getCartItems()) {
-//			System.out.println(c.getProduct().getName() + "  items");
-//		}
 		int count = 0, t_price = 0;
 		for (CartItem cartItem : order.getCartItems()) {
 			count += cartItem.getQuantity();
@@ -164,7 +155,6 @@ public class CartController {
 		}
 		order.setTotal(count);
 		order.setTotal_price(t_price);
-//		System.out.println("return " + count + "-" + t_price);
 		return count + "-" + t_price;
 	}
 
@@ -177,7 +167,7 @@ public class CartController {
 	@PostMapping("payment")
 	public String payment(@SessionAttribute(name = "order_session", required = false) UserOrder order,
 			@SessionAttribute(name = "user", required = false) User user, SessionStatus sessionStatus) {
-		System.out.println("ok");
+//		System.out.println("ok");
 		orderService.payment(order, user);
 		sessionStatus.setComplete();
 		return "redirect:/";

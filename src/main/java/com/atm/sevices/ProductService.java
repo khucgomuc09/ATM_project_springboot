@@ -1,8 +1,11 @@
 package com.atm.sevices;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
 import com.atm.entities.Product;
@@ -26,12 +29,16 @@ public class ProductService {
 		return pr.getOne(id);
 	}
 
-	public ArrayList<Product> getProductBySupplier(String supplier) {
-		// TODO Auto-generated method stub
-		ArrayList<Product> listproduct = new ArrayList<Product>();
-		for (Product product : pr.getProductBySupplier(supplier)) {
-			listproduct.add(product);
-		}
-		return listproduct;
+	public List<Product> getAllProduct() {
+		return pr.findAll();
+	}
+
+	public Page<Product> getProductBySupplier(String supplier, Pageable pageable) {
+
+		return pr.getProductBySupplier(supplier, pageable);
+	}
+
+	public Page<Product> getPageOfProduct(Pageable pageable) {
+		return pr.findAll(pageable);
 	}
 }

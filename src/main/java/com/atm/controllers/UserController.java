@@ -26,7 +26,6 @@ public class UserController {
 	@PostMapping("/register")
 	public String register(User u, ModelMap modelMap) {
 		User user = us.registerUser(u);
-		System.out.println(user);
 		if (user != null) {
 			modelMap.addAttribute("user", user);
 
@@ -43,22 +42,26 @@ public class UserController {
 		return "client/login";
 	}
 
+	@PostMapping("/login")
+	public String login(@RequestParam String username, @RequestParam String password, ModelMap modelMap) {
+		User u = us.login(username, password);
+		if (u != null) {
+//			System.out.println("uc: " + u);
+			modelMap.addAttribute("user", u);
+			return "redirect:/";
+		} else {
+			return "redirect:/login";
+		}
+	}
+
+	@GetMapping("error404")
+	public String error404() {
+		return "error404";
+	}
+
 	@GetMapping("/logout")
 	public String logout(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
 		return "redirect:removeCartItemSS";
 	}
-
-	@PostMapping("/login")
-	public String login(@RequestParam String username, @RequestParam String password, ModelMap modelMap) {
-		User u = us.login(username, password);
-		if (u != null) {
-			modelMap.addAttribute("user", u);
-			return "redirect:/";
-		} else {
-			return "redirect:client/login";
-		}
-
-	}
-
 }

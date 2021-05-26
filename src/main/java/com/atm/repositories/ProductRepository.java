@@ -2,6 +2,8 @@ package com.atm.repositories;
 
 import java.util.ArrayList;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,6 +18,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	public ArrayList<Product> getProductByType(@Param("product_type") int product_type);
 
 	@Query(value = "SELECT * FROM sanpham sp WHERE sp.nhacungcap = :supplier", nativeQuery = true)
-	public ArrayList<Product> getProductBySupplier(@Param("supplier") String supplier);
+	public Page<Product> getProductBySupplier(@Param("supplier") String supplier, Pageable pageable);
 
 }

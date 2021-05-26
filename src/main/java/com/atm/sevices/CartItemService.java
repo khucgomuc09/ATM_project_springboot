@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.atm.entities.CartItem;
-import com.atm.entities.UserOrder;
 import com.atm.entities.Product;
 import com.atm.repositories.CartItemRepository;
 import com.atm.repositories.OrderRepository;

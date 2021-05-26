@@ -113,24 +113,23 @@
 		<div class="container">
 			<div id="menu">
 				<ul class="list-menu d-flex">
-					<li id="home-menu"><a href=""><i class="fa fa-home"
+					<li id="home-menu"><a href="/"><i class="fa fa-home"
 							aria-hidden="true"></i><span>TRANG CHỦ</span></a></li>
 
 
-					<li class=""><a href="#"><img
+					<li class=""><a href="/iphone"><img
 							src="../img/common/logo-nsx/iPhone-(Apple)42-b_16.jpg"
 							alt="i-phone"></a></li>
-					<li class=""><a href="#"><img
+					<li class=""><a href="/samsung"><img
 							src="../img/common/logo-nsx/Samsung42-b_25.jpg" alt="samsung"></a></li>
-					<li class=""><a href="#"><img
+					<li class=""><a href="/xiaomi"><img
 							src="../img/common/logo-nsx/Xiaomi42-b_31.png" alt="xiaomi"></a></li>
-					<li class=""><a href="#"><img
+					<li class=""><a href="/vivo"><img
 							src="../img/common/logo-nsx/Vivo42-b_50.jpg" alt="vivo"></a></li>
-					<li class=""><a href="#"><img
+					<li class=""><a href="/oppo"><img
 							src="../img/common/logo-nsx/OPPO42-b_57.jpg" alt="oppo"></a></li>
-					<li class=""><a href="#"><img
+					<li class=""><a href="/huawei"><img
 							src="../img/common/logo-nsx/Huawei42-b_30.jpg" alt="hua"></a></li>
-
 				</ul>
 			</div>
 		</div>

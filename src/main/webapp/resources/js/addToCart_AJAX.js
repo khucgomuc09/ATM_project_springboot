@@ -12,9 +12,10 @@ $(document).ready(function() {
 			},
 			success: function(result) {
 				console.log(result);
-				//     let value = result.split("-");
+				// let value = result.split("-");
 				$('.amount').html(result);
 			}
 		})
 	});
 });
+
