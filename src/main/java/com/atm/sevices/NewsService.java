@@ -9,14 +9,14 @@ import com.atm.entities.News;
 import com.atm.repositories.NewsRepository;
 
 @Service
-public class NewsService  {
+public class NewsService {
 	@Autowired
 	private NewsRepository nr;
 
 	public ArrayList<News> getHighlightNews() {
 
 		ArrayList<News> listHighlightNews = new ArrayList<News>();
-		listHighlightNews.add(nr.getOne(15));
+		listHighlightNews.add(nr.getOne(16));
 		listHighlightNews.add(nr.getOne(12));
 		return listHighlightNews;
 	}
@@ -27,6 +27,10 @@ public class NewsService  {
 			News.add(item);
 		}
 		return News;
+	}
+
+	public News getNewsByID(int id) {
+		return nr.getOne(id);
 	}
 
 }

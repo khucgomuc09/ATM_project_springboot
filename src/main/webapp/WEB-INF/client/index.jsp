@@ -70,11 +70,12 @@
 
 								<div class="news-text-img-subs space-between">
 									<div class="img-news">
-										<a href="news/${news.id }"> <img src="${news.image }"
-											alt="" /></a>
+										<a href="../../news_detail/${news.id }"> <img
+											src="${news.image }" alt="" /></a>
 									</div>
 									<div class="text-news">
-										<a href="news/${news.id }"> ${news.description }</a>
+										<a href="../../news_detail/${news.id }">
+											${news.description }</a>
 									</div>
 								</div>
 

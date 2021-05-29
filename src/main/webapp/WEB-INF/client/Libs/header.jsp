@@ -56,10 +56,10 @@
 						id="header-main-center">
 						<div class="news-request d-flex">
 							<div class="news">
-								<a class="transform-para" href="news">Tin tức</a>
+								<a class="transform-para" href="../../news">Tin tức</a>
 							</div>
 							<div class="request">
-								<a class="transform-para" href="question">Hỏi đáp</a>
+								<a class="transform-para" href="../../question">Hỏi đáp</a>
 							</div>
 						</div>
 

@@ -18,7 +18,7 @@
                      data-aos-anchor-placement="top-bottom" data-aos-duration="500">
                     <a class="link-home" href="/">
                         <div class="logo">
-                            <img src="img/common/logo-atm.png" height="87" width="128" alt="atm"/>
+                            <img src="../img/common/logo-atm.png" height="87" width="128" alt="atm"/>
                         </div>
                     </a>
                     <div class="text-logo"><span class="company-text">Công ty TNHH 2 thành viên ATM</span>
