@@ -78,7 +78,7 @@
 					<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
 							Danh mục<span class="fa arrow"></span></a>
 						<ul class="nav nav-second-level">
-							<li><a href="../../admin/producer_manage"><i
+							<li><a href="../../admin/supplier_manage"><i
 									class="fa  fa-home fa-fw"></i>Nhà cung cấp</a></li>
 							<li><a href="../../admin/products_manage"><i
 									class="fa  fa-pencil-square-o fa-fw"></i>Quản lý sản phẩm</a></li>
@@ -91,7 +91,7 @@
 							class="fa fa-table fa-fw"></i>Doanh thu</a></li>
 					<li><a href="../../admin/order_manage"><i
 							class="fa  fa-shopping-cart fa-fw"></i> Quản lý đơn hàng</a></li>
-					<li><a href="../../admin/account_manage"><i
+					<li><a href="../../admin/user_manage"><i
 							class="fa  fa-user fa-fw"></i>Quản lý tài khoản</a></li>
 					<li><a href="../../admin/member"><i
 							class="fa fa-users fa-fw"></i>Thành viên</a></li>

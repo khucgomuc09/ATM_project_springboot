@@ -51,13 +51,11 @@ public class AdminController {
 		return "admin/index";
 	}
 
-	// product manage
+// product manage
 	@GetMapping("products_manage")
 	public ModelAndView productManage(Pageable pageable) {
 		ModelAndView modelAndView = new ModelAndView("admin/product_manager");
 		List<Product> p = productservice.getAllProduct();
-//		p.forEach(System.out::println);
-//		productservice.getAllProduct();
 		modelAndView.addObject("products", p);
 		return modelAndView;
 	}
@@ -82,12 +80,11 @@ public class AdminController {
 		return "redirect:products_manage";
 	}
 
-	// order manage
+// order manage
 	@GetMapping("order_manage")
 	public ModelAndView orderManage() {
 		ModelAndView modelAndView = new ModelAndView("admin/order_manage");
 
-//		modelAndView.addObject("orders", orderService.getAllOrder());
 		modelAndView.addObject("list_users", userService.getAllUsers());
 		return modelAndView;
 	}
@@ -105,4 +102,75 @@ public class AdminController {
 		orderService.cf_order(id_order);
 		return "1";
 	}
+
+// user manage
+	@GetMapping("user_manage")
+	public ModelAndView userManage() {
+		ModelAndView modelAndView = new ModelAndView("admin/account_manage");
+		modelAndView.addObject("list_user", userService.getAllUsers());
+
+		return modelAndView;
+	}
+
+	@PostMapping("create_user")
+	public String createUser(@ModelAttribute User user) {
+		userService.createUser(user);
+		return "redirect:user_manage";
+	}
+
+	@GetMapping("edit_user/{id}")
+	public ModelAndView editUser(@PathVariable int id) {
+		ModelAndView modelAndView = new ModelAndView("admin/account_edit");
+		modelAndView.addObject(userService.getUserbyID(id));
+		return modelAndView;
+	}
+
+	@PostMapping("edit_user")
+	public String editUser(@ModelAttribute User user) {
+		System.out.println(user);
+		userService.editUSer(user);
+		return "redirect:user_manage";
+	}
+
+	@PostMapping("delete_user/{id}")
+	public String deleteUSer(@PathVariable int id) {
+		System.out.println("id -" + id);
+		userService.deleteUser(id);
+		return "redirect:../user_manage";
+	}
+
+// supplier manage
+	@GetMapping("supplier_manage")
+	public ModelAndView supplier() {
+		ModelAndView modelAndView = new ModelAndView("admin/supplier_manage");
+		modelAndView.addObject("list_suppliers", supplierService.getAllSuppliers());
+		return modelAndView;
+	}
+
+	@PostMapping("create_supplier")
+	public String createSupplier(@ModelAttribute Supplier supplier) {
+		supplierService.createSupplier(supplier);
+		return "redirect:supplier_manage";
+	}
+
+	@GetMapping("edit_supplier/{id}")
+	public ModelAndView editSupplier(@PathVariable String id) {
+		ModelAndView modelAndView = new ModelAndView("admin/edit_supplier");
+		modelAndView.addObject(supplierService.getSupplierByID(id));
+		return modelAndView;
+	}
+
+	@PostMapping("edit_supplier/{id}")
+	public String editSupplier(@ModelAttribute Supplier supplier, @PathVariable String id) {
+		System.out.println(id);
+		supplierService.editSupplier(id, supplier);
+		return "redirect:../../admin/supplier_manage";
+	}
+
+	@PostMapping("delete_supplier/{id}")
+	public String deleteSupplier(@PathVariable String id) {
+		supplierService.removeSupplier(id);
+		return "redirect:../../admin/supplier_manage";
+	}
+
 }

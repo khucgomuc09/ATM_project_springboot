@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -38,7 +40,11 @@ public class UserController {
 	}
 
 	@GetMapping("/login")
-	public String login() {
+	public String login(@RequestParam(name = "isExist", required = false, defaultValue = "true") boolean isExist,
+			ModelMap modelMap) {
+		if (!isExist) {
+			modelMap.addAttribute("check", isExist);
+		}
 		return "client/login";
 	}
 
@@ -50,7 +56,7 @@ public class UserController {
 			modelMap.addAttribute("user", u);
 			return "redirect:/";
 		} else {
-			return "redirect:/login";
+			return "redirect:/login?isExist=false";
 		}
 	}
 
@@ -63,5 +69,12 @@ public class UserController {
 	public String logout(SessionStatus sessionStatus) {
 		sessionStatus.setComplete();
 		return "redirect:removeCartItemSS";
+	}
+
+	@PostMapping("/check_register")
+	@ResponseBody
+	public String checkRegister(@RequestParam String email, @RequestParam String username) {
+		System.out.println(us.checkEmailExist(email) + " " + us.checkUsernameExist(username));
+		return us.checkEmailExist(email) + " " + us.checkUsernameExist(username);
 	}
 }

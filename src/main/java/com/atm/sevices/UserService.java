@@ -45,4 +45,42 @@ public class UserService {
 			return null;
 		}
 	}
+
+	public User createUser(User user) {
+		return ur.save(user);
+	}
+
+	public User editUSer(User user) {
+		User u = ur.getOne(user.getId());
+		u.setAddress(user.getAddress());
+		u.setEmail(user.getEmail());
+		u.setFullname(user.getFullname());
+		u.setGender(user.getGender());
+		u.setLevel(user.getLevel());
+		u.setPhone(user.getPhone());
+
+		return ur.save(u);
+	}
+
+	public void deleteUser(int id) {
+		ur.deleteById(id);
+	}
+
+	public boolean checkEmailExist(String email) {
+		for (String s : ur.getEmail()) {
+			if (s.equalsIgnoreCase(email))
+				return true;
+		}
+
+		return false;
+	}
+
+	public boolean checkUsernameExist(String username) {
+		for (String s : ur.getUsername()) {
+			if (s.equalsIgnoreCase(username))
+				return true;
+		}
+
+		return false;
+	}
 }

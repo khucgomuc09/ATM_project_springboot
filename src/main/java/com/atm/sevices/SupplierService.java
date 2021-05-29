@@ -16,4 +16,22 @@ public class SupplierService {
 	public List<Supplier> getAllSuppliers() {
 		return supplierRepository.findAll();
 	}
+
+	public Supplier getSupplierByID(String id) {
+		return supplierRepository.getOne(id);
+	}
+
+	public Supplier createSupplier(Supplier supplier) {
+		return supplierRepository.save(supplier);
+	}
+
+	public Supplier editSupplier(String id, Supplier supplier) {
+		removeSupplier(id);
+
+		return supplierRepository.save(supplier);
+	}
+
+	public void removeSupplier(String id) {
+		supplierRepository.deleteById(id);
+	}
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 
@@ -22,7 +22,10 @@
 	<section id="body">
 		<div id="login-atm">
 			<div class="login box-shadow-form">
-				<span class="err-login">er</span>
+				<c:if test="${check ==false}">
+					<span class="err-login">Tài khoản hoặc mật khẩu không chính
+						xác</span>
+				</c:if>
 				<div class="title-form" data-aos="zoom-out-down"
 					data-aos-duration="800">
 					<h1>Đăng nhập</h1>
@@ -40,7 +43,7 @@
 					<button id="confirm-btn" type="submit">ĐĂNG NHẬP</button>
 					<div class="forgot-register">
 						<a data-toggle="modal" data-target="#myModal" href="">Quên mật
-							khẩu</a> <a href="register.jsp">Đăng ký</a>
+							khẩu</a> <a href="/register">Đăng ký</a>
 					</div>
 					<button id="login-wfb" type="button">
 						<i class="fa fa-facebook" aria-hidden="true"></i>Đăng Nhập Bằng
@@ -101,8 +104,10 @@
 	<!--js--start-->
 	<jsp:include page="Libs/fragment-footer.jsp"></jsp:include>
 	<!--js--end-->
-	<script src="../../resources/js/validation-form/vali-login.js"></script>
-	<script src="../../resources/js/validation-form/vali-forget.js"></script>
+	<script type="text/javascript"
+		src="../../resources/js/validation-form/vali-login.js"></script>
+	<script type="text/javascript"
+		src="../../resources/js/validation-form/vali-forget.js"></script>
 
 </body>
 

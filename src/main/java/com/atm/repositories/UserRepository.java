@@ -1,5 +1,7 @@
 package com.atm.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,7 +17,10 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	@Query(nativeQuery = true, value = "select * from user where username =:username")
 	public User findByUserName(@Param("username") String username);
 
-//	@Query(nativeQuery = true, value = "update user set username = :username where id = :id")
-//	public User updateOrderOfUser(@Param("id") int id_user, @Param("username") String username);
+	@Query(nativeQuery = true, value = "select email from user")
+	public List<String> getEmail();
+
+	@Query(nativeQuery = true, value = "select username from user")
+	public List<String> getUsername();
 
 }

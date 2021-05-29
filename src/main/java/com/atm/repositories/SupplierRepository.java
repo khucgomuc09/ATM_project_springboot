@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.atm.entities.Supplier;
 
 @Repository
-public interface SupplierRepository extends JpaRepository<Supplier, Integer> {
+public interface SupplierRepository extends JpaRepository<Supplier, String> {
 
 }
