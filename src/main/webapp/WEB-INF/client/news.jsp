@@ -32,7 +32,7 @@
 											<div class="title-news">
 												<h6>${news.title }</h6>
 												<span class="date">${news.byDate }</span>
-												<figure class="content-news-main">${news.description }...
+												<figure class="content-news-main">${news.description }
 												</figure>
 											</div>
 										</a>
@@ -60,7 +60,8 @@
 											<div class="title-news">
 												<h6>${news.title }</h6>
 												<span class="date">${news.byDate }</span>
-												<figure class="content-news-main">${news.description }...
+												<figure class="content-news-main"
+													style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical">${news.description }...
 												</figure>
 											</div>
 										</a>

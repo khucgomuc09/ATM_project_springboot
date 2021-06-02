@@ -20,17 +20,6 @@
 			<div class="container">
 				<div class="content-news justify-space-between">
 
-					
-					<div class="content-post">
-						<h5 id="title-news">${news.title }</h5>
-						<span class="date">${news.byDate }</span>
-						<div class="content-left">
-							${news.content }
-							<div class="author">
-								<b>Theo: </b><span>ATM</span>
-							</div>
-						</div>
-					</div>
 					<div class="frame-hot-post">
 						<div class="hot-post">
 							<h5>BÀI VIẾT NỔI BẬT</h5>
@@ -52,6 +41,7 @@
 								</jstl:forEach>
 							</div>
 						</div>
+
 						<div class="social">
 							<h5>THEO DÕI ATM TRÊN SOCIAL</h5>
 							<div class="icon-social d-flex justify-content-around">
@@ -64,6 +54,19 @@
 							</div>
 						</div>
 					</div>
+
+					<div class="content-post">
+						<h5 id="title-news">${news.title }</h5>
+						<span class="date">${news.byDate }</span>
+						<div class="content-left">
+							${news.content }
+							<div class="author">
+								<b>Theo: </b><span>ATM</span>
+							</div>
+						</div>
+					</div>
+
+
 				</div>
 			</div>
 		</div>

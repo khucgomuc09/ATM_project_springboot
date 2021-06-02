@@ -30,8 +30,8 @@
 					data-aos-duration="800">
 					<h1>Đăng nhập</h1>
 				</div>
-				<form id="form-login" class="form-style" action="login"
-					method="post">
+				<form id="form-login" class="form-style"
+					action="j_spring_security_check" method="post">
 					<label for="usr-name">Tài khoản</label> <input type="text"
 						id="usr-name" name="username" placeholder="Tài khoản" value="">
 					<label for="password">Mật khẩu</label> <input type="password"

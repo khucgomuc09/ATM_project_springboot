@@ -12,7 +12,7 @@
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="./index.jsp">ATM</a>
+			<a class="navbar-brand" href="../../">ATM</a>
 		</div>
 
 		<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -82,19 +82,13 @@
 									class="fa  fa-home fa-fw"></i>Nhà cung cấp</a></li>
 							<li><a href="../../admin/products_manage"><i
 									class="fa  fa-pencil-square-o fa-fw"></i>Quản lý sản phẩm</a></li>
-							<li><a href="../../admin/comments_manage"><i
-									class="fa  fa-comments fa-fw"></i>Quản lý bình luận</a></li>
-							<li><a href="../../admin/news_manage"><i
-									class="fa  fa-newspaper-o fa-fw"></i>Quản lý tin tức</a></li>
 						</ul></li>
-					<li><a href="../../admin/revenue"><i
-							class="fa fa-table fa-fw"></i>Doanh thu</a></li>
+
 					<li><a href="../../admin/order_manage"><i
 							class="fa  fa-shopping-cart fa-fw"></i> Quản lý đơn hàng</a></li>
 					<li><a href="../../admin/user_manage"><i
 							class="fa  fa-user fa-fw"></i>Quản lý tài khoản</a></li>
-					<li><a href="../../admin/member"><i
-							class="fa fa-users fa-fw"></i>Thành viên</a></li>
+
 				</ul>
 			</div>
 		</div>

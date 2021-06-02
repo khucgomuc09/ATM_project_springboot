@@ -1,14 +1,13 @@
 package com.atm.sevices;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.atm.entities.User;
 import com.atm.repositories.UserRepository;
-import com.atm.utils.MD5;
 
 @Service
 public class UserService {
@@ -20,30 +19,26 @@ public class UserService {
 
 	}
 
+	public User getUserbyUsername(String username) {
+		return ur.findByUserName(username);
+
+	}
+
 	public List<User> getAllUsers() {
 		return ur.findAll();
 	}
 
 	public User registerUser(User u) {
-		try {
-			System.out.println(u.getPassword() + "us+ ");
-			u.setPassword(MD5.convertToMD5(u.getPassword()));
-			System.out.println(u.getPassword() + "after+ ");
-			return ur.save(u);
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-			return null;
-		}
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		System.out.println(u.getPassword() + "us+ ");
+		u.setPassword(passwordEncoder.encode(u.getPassword()));
+		System.out.println(u.getPassword() + "after+ ");
+		return ur.save(u);
 	}
 
 	public User login(String username, String password) {
-
-		try {
-			return ur.findByUserNameAndPassWord(username, MD5.convertToMD5(password));
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-			return null;
-		}
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		return ur.findByUserNameAndPassWord(username, passwordEncoder.encode(password));
 	}
 
 	public User createUser(User user) {

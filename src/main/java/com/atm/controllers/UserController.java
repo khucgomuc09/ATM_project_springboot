@@ -1,6 +1,9 @@
 package com.atm.controllers;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,17 +51,23 @@ public class UserController {
 		return "client/login";
 	}
 
-	@PostMapping("/login")
-	public String login(@RequestParam String username, @RequestParam String password, ModelMap modelMap) {
-		User u = us.login(username, password);
-		if (u != null) {
-//			System.out.println("uc: " + u);
-			modelMap.addAttribute("user", u);
-			return "redirect:/";
-		} else {
-			return "redirect:/login?isExist=false";
-		}
+	@GetMapping("sessionUser")
+	public String setSessionUser(Principal principal, ModelMap modelMap) {
+		User u = us.getUserbyUsername(principal.getName());
+		modelMap.addAttribute("user", u);
+		return "redirect:/";
 	}
+
+//	@PostMapping("/login")
+//	public String login(@RequestParam String username, @RequestParam String password, ModelMap modelMap) {
+//		User u = us.login(username, password);
+//		if (u != null) {
+//			modelMap.addAttribute("user", u);
+//			return "redirect:/";
+//		} else {
+//			return "redirect:/login?isExist=false";
+//		}
+//	}
 
 	@GetMapping("error404")
 	public String error404() {
