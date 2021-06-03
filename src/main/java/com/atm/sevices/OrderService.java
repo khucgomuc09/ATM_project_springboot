@@ -30,7 +30,6 @@ public class OrderService {
 		Optional<User> op = userRepository.findById(user.getId());
 		User userDB = op.get();
 
-//		System.out.println(userDB);
 		for (CartItem cartItem : order.getCartItems()) {
 
 			cartItemRepository.save(cartItem);

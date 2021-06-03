@@ -64,9 +64,9 @@ public class AdminController {
 	public ModelAndView editProduct(@PathVariable("id") int id) {
 		ModelAndView modelAndView = new ModelAndView("admin/product_edit");
 		Product product = productservice.getProductById(id);
-		System.out.println(product.getName() + " - " + product.getSupplier());
+//		System.out.println(product.getName() + " - " + product.getSupplier());
 		List<Supplier> listSupplier = supplierService.getAllSuppliers();
-		System.out.println(listSupplier.get(0).getName());
+//		System.out.println(listSupplier.get(0).getName());
 		modelAndView.addObject("product", product);
 		modelAndView.addObject("suppliers", listSupplier);
 		return modelAndView;
@@ -74,8 +74,8 @@ public class AdminController {
 
 	@PostMapping("update_product")
 	public String updateProduct(@ModelAttribute Product product, @ModelAttribute ProductDetail productDetail) {
-		System.out.println(product);
-		System.out.println(productDetail);
+//		System.out.println(product);
+//		System.out.println(productDetail);
 		adminService.updateProduct(product, productDetail);
 		return "redirect:products_manage";
 	}
@@ -98,7 +98,7 @@ public class AdminController {
 	@PostMapping("cf_order")
 	@ResponseBody
 	public String cf_order(@RequestParam int id_order) {
-		System.out.println("cf_order " + id_order);
+//		System.out.println("cf_order " + id_order);
 		orderService.cf_order(id_order);
 		return "1";
 	}
@@ -127,14 +127,14 @@ public class AdminController {
 
 	@PostMapping("edit_user")
 	public String editUser(@ModelAttribute User user) {
-		System.out.println(user);
+//		System.out.println(user);
 		userService.editUSer(user);
 		return "redirect:user_manage";
 	}
 
 	@PostMapping("delete_user/{id}")
 	public String deleteUSer(@PathVariable int id) {
-		System.out.println("id -" + id);
+//		System.out.println("id -" + id);
 		userService.deleteUser(id);
 		return "redirect:../user_manage";
 	}
@@ -162,7 +162,7 @@ public class AdminController {
 
 	@PostMapping("edit_supplier/{id}")
 	public String editSupplier(@ModelAttribute Supplier supplier, @PathVariable String id) {
-		System.out.println(id);
+//		System.out.println(id);
 		supplierService.editSupplier(id, supplier);
 		return "redirect:../../admin/supplier_manage";
 	}

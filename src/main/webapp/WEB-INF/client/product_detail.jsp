@@ -32,7 +32,7 @@
 					</div>
 					<div class="detail-products">
 						<div class="title-top">
-							<h3>${product.productDetail.os }</h3>
+							<h3>${product.name }</h3>
 							<div class="d-flex">
 								<div class="text-producer d-flex">
 									<span>Thương hiệu:</span> <span id="producer">${product.supplier }</span>

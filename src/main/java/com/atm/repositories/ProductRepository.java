@@ -20,4 +20,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	@Query(value = "SELECT * FROM sanpham sp WHERE sp.nhacungcap = :supplier", nativeQuery = true)
 	public Page<Product> getProductBySupplier(@Param("supplier") String supplier, Pageable pageable);
 
+	@Query(value = "SELECT masanpham,nhacungcap,tensanpham,hinhanh FROM sanpham sp WHERE sp.tensanpham like %:keywords% limit 5", nativeQuery = true)
+	public ArrayList<String> searchproduct(@Param("keywords") String keywords);
 }

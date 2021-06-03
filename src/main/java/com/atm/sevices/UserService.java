@@ -30,9 +30,9 @@ public class UserService {
 
 	public User registerUser(User u) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		System.out.println(u.getPassword() + "us+ ");
+//		System.out.println(u.getPassword() + "us+ ");
 		u.setPassword(passwordEncoder.encode(u.getPassword()));
-		System.out.println(u.getPassword() + "after+ ");
+//		System.out.println(u.getPassword() + "after+ ");
 		return ur.save(u);
 	}
 

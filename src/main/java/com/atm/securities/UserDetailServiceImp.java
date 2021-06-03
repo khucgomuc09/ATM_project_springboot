@@ -9,20 +9,15 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.atm.entities.User;
 import com.atm.repositories.UserRepository;
-import com.atm.sevices.UserRoleService;
 
-@SuppressWarnings("deprecation")
 @Service
 public class UserDetailServiceImp implements UserDetailsService {
 	@Autowired
 	private UserRepository ur;
-	@Autowired
-	private UserRoleService urs;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -36,7 +31,6 @@ public class UserDetailServiceImp implements UserDetailsService {
 
 			List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
 			if (user.getLevel() == 1) {
-				System.out.println(user.getLevel());
 				// ROLE_USER, ROLE_ADMIN,..
 				GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_ADMIN");
 				grantList.add(authority);

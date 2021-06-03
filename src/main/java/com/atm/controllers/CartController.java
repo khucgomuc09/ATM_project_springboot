@@ -167,7 +167,6 @@ public class CartController {
 	@PostMapping("payment")
 	public String payment(@SessionAttribute(name = "order_session", required = false) UserOrder order,
 			@SessionAttribute(name = "user", required = false) User user, SessionStatus sessionStatus) {
-//		System.out.println("ok");
 		orderService.payment(order, user);
 		sessionStatus.setComplete();
 		return "redirect:/";

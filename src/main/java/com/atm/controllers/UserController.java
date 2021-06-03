@@ -3,11 +3,9 @@ package com.atm.controllers;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,14 +27,13 @@ public class UserController {
 	}
 
 	@PostMapping("/register")
-	public String register(User u, ModelMap modelMap) {
+	public String register(User u) {
 		User user = us.registerUser(u);
 		if (user != null) {
-			modelMap.addAttribute("user", user);
-
-			return "redirect:/";
+			
+			return "redirect:login";
 		} else {
-			System.out.println("user null");
+//			System.out.println("user null");
 			return "redirect:/register";
 		}
 
@@ -83,7 +80,6 @@ public class UserController {
 	@PostMapping("/check_register")
 	@ResponseBody
 	public String checkRegister(@RequestParam String email, @RequestParam String username) {
-		System.out.println(us.checkEmailExist(email) + " " + us.checkUsernameExist(username));
 		return us.checkEmailExist(email) + " " + us.checkUsernameExist(username);
 	}
 }

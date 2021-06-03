@@ -3,7 +3,6 @@ package com.atm.securities;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -18,7 +17,7 @@ public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		String[] anyOneCanAccess = { "/", "/register", "/login", "/check_register", "/news_detail/**", "/HUAWEI/**",
 				"/IPHONE/**", "/OPPO/**", "/XIAOMI/**", "/SAMSUNG/**", "/VIVO/**", "/resources/**", "/img/**",
-				"/news/**", "/question" };
+				"/news/**", "/question","/search/**" };
 		String[] userCanAccess = { "/logout", "/cart/**", "/payment/**", "/removeCartItemSS/**", "/delete_cartItem/**",
 				"/update_item/**", "/add_items_to_cart/**" };
 		String[] adminCanAccess = { "/admin/**" };
@@ -35,7 +34,6 @@ public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests().and().formLogin()//
 				.loginProcessingUrl("/j_spring_security_check").loginPage("/login")//
 				.defaultSuccessUrl("/sessionUser").failureUrl("/login?isExist=false")
-
 				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
 	}
 

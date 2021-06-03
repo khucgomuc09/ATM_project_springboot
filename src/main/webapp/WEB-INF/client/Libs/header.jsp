@@ -157,16 +157,33 @@
 				} else {
 					$.ajax({
 						method : 'POST',
-						url : 'search',
+						url : 'http://localhost:8080/search',
 						data : {
-							input : input
+							keywords : input
 						},
 						success : function(result) {
+						console.log(result);
+						
 							if (result === "empty") {
 								wrap.css("display", "none");
 							} else {
+							
+						/*	var items = result.forEach(getItem);
+							function getItem(value){
+							let v = value.split(",");
+								console.log('id '+ v[0]);
+								console.log('name '+ v[2]);
+								
 								wrap.css("display", "block");
-								wrap.html(result);
+								
+								wrap.html('<li> <a href="http://localhost:8080/'+v[1]+'/'+v[0]+'"> <img src="'+v[3]+'" width="60"/>'+ v[2]+' </a> </li>');
+							}
+							*/
+							let arr = result.map(x => '<li> <a href="http://localhost:8080/'+x.split(',')[1]+'/'+x.split(',')[0]+'"> <img src="'+x.split(',')[3]+'" width="60"/>'+ x.split(',')[2]+' </a> </li>')
+								wrap.css("display", "block");
+								
+								wrap.html(arr);
+						
 							}
 						}
 					})

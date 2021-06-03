@@ -41,4 +41,9 @@ public class ProductService {
 	public Page<Product> getPageOfProduct(Pageable pageable) {
 		return pr.findAll(pageable);
 	}
+
+	public List<String> search(String keywords) {
+		return pr.searchproduct(keywords);
+
+	}
 }

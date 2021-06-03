@@ -8,25 +8,18 @@ import org.springframework.stereotype.Service;
 
 import com.atm.entities.CartItem;
 import com.atm.entities.Product;
-import com.atm.repositories.CartItemRepository;
-import com.atm.repositories.OrderRepository;
 import com.atm.repositories.ProductRepository;
 
 @Service
 public class CartItemService {
 	@Autowired
 	private ProductRepository pr;
-	@Autowired
-	private CartItemRepository cr;
-	@Autowired
-	private OrderRepository or;
 
 	public List<CartItem> addCartItem(int id) {
 		List<CartItem> listItem = new ArrayList<CartItem>();
 		boolean isExist = false;
 		for (int i = 0; i < listItem.size(); i++) {
 			if (listItem.get(i).getProduct().getId() == id) {
-//				listItem.get(indexOfId).getProduct().setAmount(listItem.get(indexOfId).getProduct().getAmount() + 1);
 				listItem.get(i).setQuantity(listItem.get(i).getQuantity() + 1);
 				isExist = true;
 				break;

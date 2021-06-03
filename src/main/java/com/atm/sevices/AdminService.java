@@ -7,12 +7,9 @@ import com.atm.entities.Product;
 import com.atm.entities.ProductDetail;
 import com.atm.repositories.ProductDetailRepository;
 import com.atm.repositories.ProductRepository;
-import com.atm.repositories.UserRepository;
 
 @Service
 public class AdminService {
-	@Autowired
-	private UserRepository userRepository;
 	@Autowired
 	private ProductRepository productRepository;
 	@Autowired
@@ -43,7 +40,6 @@ public class AdminService {
 
 		pro.setProductDetail(proDetail);
 		productRepository.save(pro);
-//		productDetailRepository.save(proDetail);
 		return true;
 	}
 }

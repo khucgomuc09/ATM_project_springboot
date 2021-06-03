@@ -1,12 +1,16 @@
 package com.atm.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -35,17 +39,12 @@ public class ProductController {
 		modelAndView.addObject("hightlight_news", ns.getHighlightNews());
 		if (order != null) {
 			modelAndView.addObject("order", order);
-			System.out.println("home_page: " + order.getDelivery_address() + " _ " + order.getStatus() + " _ "
-					+ order.getTotal() + " _ " + order.getTotal_price());
 
 		}
 		if (user != null) {
-			System.out.println("session");
-//			System.out.println("home_page: " + user);
 			modelAndView.addObject(user);
 		} else {
 
-			System.out.println("non-session");
 		}
 		return modelAndView;
 	}
@@ -69,6 +68,12 @@ public class ProductController {
 		modelAndView.addObject("total_pages", p.getTotalPages());
 		modelAndView.addObject("current_page", p.getNumber());
 		return modelAndView;
+	}
+
+	@PostMapping("/search")
+	@ResponseBody
+	public List<String> seacrh(@RequestParam String keywords) {
+		return ps.search(keywords);
 	}
 
 }
