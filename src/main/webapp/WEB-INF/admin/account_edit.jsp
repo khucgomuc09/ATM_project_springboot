@@ -169,7 +169,7 @@
 														for="email">Email<span>*</span></label>
 												</div>
 												<div class="col-sm-3 col-xs-6">
-													<input type="tel" id="sdt" name="phone"
+													<input type="number" id="sdt" name="phone"
 														value="${user.phone }"> <label for="sdt">Điện
 														thoại<span>*</span>
 													</label>

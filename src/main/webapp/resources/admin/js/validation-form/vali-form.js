@@ -1,6 +1,6 @@
 $(document).ready(function () {
     const reg_mail = /^[A-Za-z0-9]+[_\.\-]?[A-Za-z0-9]*@[A-Za-z0-9]+[-\.\_]{1}[A-Za-z0-9]+[\.]?[A-Za-z]*[\.]?[A-Za-z]*$/;
-    const reg_sdt = /^0[1-9]{8,9}$/;
+    const reg_sdt = /^0[1-9]{1}\d{8,9}$;
     const reg_usr = /^[a-zA-Z0-9]+$/
     const reg_pass = /^[a-zA-Z0-9!@#$%^&*()_.?\/]{6,}$/;
     const usr_name = $('#usr-name');
@@ -11,9 +11,9 @@ $(document).ready(function () {
     const  id = $('#id');
     // producer
     const id_producer = $('#id-producer'), name_producer = $('#name-producer'), add_producer = $('#add-producer');
-    //product
+    // product
     const id_product = $('#id-product'), name_product = $('#name-product'), count_product = $('#count-product');
-    //oder
+    // oder
     const  address_oder = $('#address-oder');
     let flag = true;
     $('#form-validate').submit(function () {
@@ -75,7 +75,7 @@ $(document).ready(function () {
             notEmpty(add_producer, 'Vui lòng nhập Địa chỉ nhà cung cấp', null);
             flag = false;
         }
-        //product
+        // product
         if (id_product.val() === '') {
             notEmpty(id_product, 'Vui lòng nhập Mã sản phẩm', null);
             flag = false;
@@ -88,7 +88,7 @@ $(document).ready(function () {
             notEmpty(count_product, 'Vui lòng nhập Số lượng', null);
             flag = false;
         }
-        //oder
+        // oder
         if (address_oder.val() === '') {
             notEmpty(address_oder, 'Vui lòng nhập Địa chỉ giao hàng', null);
             flag = false;
