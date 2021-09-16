@@ -147,49 +147,6 @@
 		</span></li>
 	</ul>
 
-	<script>
-		$(document).ready(function() {
-			let wrap = $('.wrap-suggestion');
-			$('#search').on('keyup', function() {
-				let input = $('#search').val();
-				if (input === "") {
-					wrap.css("display", "none").html("");
-				} else {
-					$.ajax({
-						method : 'POST',
-						url : 'http://localhost:8080/search',
-						data : {
-							keywords : input
-						},
-						success : function(result) {
-						console.log(result);
-						
-							if (result === "empty") {
-								wrap.css("display", "none");
-							} else {
-							
-						/*	var items = result.forEach(getItem);
-							function getItem(value){
-							let v = value.split(",");
-								console.log('id '+ v[0]);
-								console.log('name '+ v[2]);
-								
-								wrap.css("display", "block");
-								
-								wrap.html('<li> <a href="http://localhost:8080/'+v[1]+'/'+v[0]+'"> <img src="'+v[3]+'" width="60"/>'+ v[2]+' </a> </li>');
-							}
-							*/
-							let arr = result.map(x => '<li> <a href="http://localhost:8080/'+x.split(',')[1]+'/'+x.split(',')[0]+'"> <img src="'+x.split(',')[3]+'" width="60"/>'+ x.split(',')[2]+' </a> </li>')
-								wrap.css("display", "block");
-								
-								wrap.html(arr);
-						
-							}
-						}
-					})
-				}
-			});
-		})
-	</script>
+	<script src="../../../resources/js/ajax_searching.js"></script>
 </body>
 </html>

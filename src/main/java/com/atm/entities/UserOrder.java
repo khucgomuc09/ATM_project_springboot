@@ -36,4 +36,6 @@ public class UserOrder {
 	private int total_price;
 	@Column(name = "delivery_address")
 	private String delivery_address;
+	@Column(name = "payment")
+	private int payment;
 }

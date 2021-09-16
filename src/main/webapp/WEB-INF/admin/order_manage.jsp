@@ -54,14 +54,17 @@
 										<thead>
 											<tr>
 												<th>#</th>
-												<th>Tên khách hàng</th>
+												<th style="text-align: center">Tên khách hàng</th>
 												<%--                                        <th>Email</th>--%>
-												<th>Số điện thoại</th>
-												<th>Địa chỉ</th>
+												<th style="text-align: center">Số điện thoại</th>
+												<th style="text-align: center">Địa chỉ</th>
 												<!-- <th>Ngày tạo</th>  -->
-												<th class="remove">Xem chi tiết</th>
-												<th class="remove">Trạng thái</th>
-												<th class="remove" style="text-align: center">Xóa</th>
+												<th class="remove" style="text-align: center">Xem chi
+													tiết</th>
+												<th class="remove" style="text-align: center">Trạng
+													thái</th>
+												<th class="remove" style="text-align: center">Phương
+													thức thanh toán</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -97,33 +100,16 @@
 															</jstl:otherwise>
 														</jstl:choose>
 
-														<td style="text-align: center"><a data-toggle="modal"
-															data-target="#${order.id }cf"
-															class="btn default btn-xs black btn-delete"><i
-																class="fa fa-trash-o"></i></a>
-															<div id="${order.id }cf" class="modal fade modal-confirm"
-																role="dialog">
-																<div class="modal-dialog modal-sm">
-																	<!-- Modal content-->
-																	<div class="modal-content">
-																		<div class="modal-body">
-																			<p class="text-content">
-																				Xác nhận xóa đơn hàng <em>${order.id }</em>
-																			</p>
-																		</div>
-																		<div class="modal-footer">
-																			<form action="delete_order/${order.id}" method="post">
-																				<button type="button" class="tbn-cancle"
-																					data-dismiss="modal" style="margin-right: 1%">Hủy</button>
-																				<button type="submit" class="btn-cf">Xác
-
-																					nhận</button>
-																			</form>
-
-																		</div>
-																	</div>
-																</div>
-															</div></td>
+														<jstl:choose>
+															<jstl:when test="${order.payment==0 }">
+																<td style="text-align: center"><span
+																	style="background-color: #848484" class="label">COD</span></td>
+															</jstl:when>
+															<jstl:otherwise>
+																<td style="text-align: center"><span
+																	style="background-color: #5dc0f5" class="label">VNPAY</span></td>
+															</jstl:otherwise>
+														</jstl:choose>
 													</tr>
 
 													<div id="${order.id }" class="modal fade" tabindex="-1"
@@ -219,7 +205,7 @@ $(document).ready(function(){
 		$(this).css("background-color","#3c8d86");
 		$(this).text("Đã xác nhận");
 		$.ajax({
-				url:"http://localhost:8080/admin/cf_order",
+				url:"http://127.0.0.1:8080/admin/cf_order",
 				method:'post',
 				data:{
 				id_order: orderid,

@@ -67,7 +67,7 @@
 	 	switch($(this).attr('id')){
 	 		case 'email':
 	 			$.ajax({
-					url: 'http://localhost:8080/check_register',
+					url: 'http://127.0.0.1:8080/check_register',
 					method: 'post',
 					data:{
 						email: $(this).val(),
@@ -86,7 +86,7 @@
 	 			break;
 	 		case 'usr-name':
 	 		$.ajax({
-					url: 'http://localhost:8080/check_register',
+					url: 'http://127.0.0.1:8080/check_register',
 					method: 'post',
 					data:{
 						email: null,

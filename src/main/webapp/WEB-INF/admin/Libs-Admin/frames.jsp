@@ -22,7 +22,7 @@
 		</button>
 
 		<ul class="nav navbar-nav navbar-left navbar-top-links">
-			<li><a href="admin/index"><i class="fa fa-home fa-fw"></i>
+			<li><a href="/"><i class="fa fa-home fa-fw"></i>
 					Website</a></li>
 		</ul>
 

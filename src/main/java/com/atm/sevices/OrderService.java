@@ -23,8 +23,6 @@ public class OrderService {
 	CartItemRepository cartItemRepository;
 	@Autowired
 	UserRepository userRepository;
-	@Autowired
-	ProductRepository productRepository;
 
 	public boolean payment(UserOrder order, User user) {
 		Optional<User> op = userRepository.findById(user.getId());
@@ -43,10 +41,10 @@ public class OrderService {
 		return orderRepository.findAll();
 	}
 
-	public boolean deleteOrder(int id) {
-		orderRepository.deleteById(id);
-		return true;
-	}
+//	public boolean deleteOrder(int id) {
+//		orderRepository.deleteById(id);
+//		return true;
+//	}
 
 	public void cf_order(int id_order) {
 		UserOrder r = orderRepository.getOne(id_order);

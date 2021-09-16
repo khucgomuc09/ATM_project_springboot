@@ -27,7 +27,7 @@ public class CartItemService {
 		}
 		if (!isExist) {
 			Product p = pr.getOne(id);
-			listItem.add(new CartItem(0, p, 1, p.getPrice()));
+			listItem.add(new CartItem(0, p, 1, p.getPrice_remaining()));
 		}
 		return listItem;
 	}

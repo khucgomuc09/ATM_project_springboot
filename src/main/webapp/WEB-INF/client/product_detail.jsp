@@ -37,10 +37,6 @@
 								<div class="text-producer d-flex">
 									<span>Thương hiệu:</span> <span id="producer">${product.supplier }</span>
 								</div>
-								<%--                            <div class="id-products d-flex">--%>
-								<%--                                <span>Mã sản phẩm:</span>--%>
-								<%--                                <span id="id-pro"><%=ctsp.getSanPham().getMaSanPham()%></span>--%>
-								<%--                            </div>--%>
 							</div>
 						</div>
 						<div class="price">

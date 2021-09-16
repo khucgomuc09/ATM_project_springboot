@@ -17,9 +17,9 @@ public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		String[] anyOneCanAccess = { "/", "/register", "/login", "/check_register", "/news_detail/**", "/HUAWEI/**",
 				"/IPHONE/**", "/OPPO/**", "/XIAOMI/**", "/SAMSUNG/**", "/VIVO/**", "/resources/**", "/img/**",
-				"/news/**", "/question","/search/**" };
+				"/news/**", "/question", "/search/**" };
 		String[] userCanAccess = { "/logout", "/cart/**", "/payment/**", "/removeCartItemSS/**", "/delete_cartItem/**",
-				"/update_item/**", "/add_items_to_cart/**" };
+				"/update_item/**", "/add_items_to_cart/**", "/invoice/**" };
 		String[] adminCanAccess = { "/admin/**" };
 		http.authorizeRequests().antMatchers(anyOneCanAccess).permitAll();
 
@@ -33,8 +33,8 @@ public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
 
 		http.authorizeRequests().and().formLogin()//
 				.loginProcessingUrl("/j_spring_security_check").loginPage("/login")//
-				.defaultSuccessUrl("/sessionUser").failureUrl("/login?isExist=false")
-				.and().logout().logoutUrl("/logout").logoutSuccessUrl("/");
+				.defaultSuccessUrl("/sessionUser").failureUrl("/login?isExist=false").and().logout()
+				.logoutUrl("/logout").logoutSuccessUrl("/");
 	}
 
 	@Bean

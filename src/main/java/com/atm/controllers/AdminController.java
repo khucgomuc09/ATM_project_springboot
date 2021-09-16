@@ -89,12 +89,13 @@ public class AdminController {
 		return modelAndView;
 	}
 
-	@PostMapping("delete_order/{id}")
-	public String deleteOrder(@PathVariable int id) {
-		orderService.deleteOrder(id);
-		return "redirect:../order_manage";
-	}
-
+//	@PostMapping("delete_order/{id}")
+//	public String deleteOrder(@PathVariable int id) {
+//		orderService.deleteOrder(id);
+//		return "redirect:../order_manage";
+//	}
+//
+	// xac nhan don hang
 	@PostMapping("cf_order")
 	@ResponseBody
 	public String cf_order(@RequestParam int id_order) {
