@@ -17,8 +17,8 @@ $(document).ready(function() {
 							if (result === "empty") {
 								wrap.css("display", "none");
 							} else {
-						
-									let arr = result.map(x => '<li> <a href="http://127.0.0.1:8080/'+x.split(',')[1]+'/'+x.split(',')[0]+'"> <img src="'+x.split(',')[3]+'" width="60"/>'+ x.split(',')[2]+' </a> </li>')
+										
+									let arr = result.map(x => '<li> <a href="http://127.0.0.1:8080/'+x.split(',')[1]+'/'+x.split(',')[0]+'"> <img src="../'+x.split(',')[3]+'" width="60"/>'+ x.split(',')[2]+' </a> </li>')
 								wrap.css("display", "block");
 								
 								wrap.html(arr);
